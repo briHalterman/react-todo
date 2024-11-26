@@ -11,11 +11,13 @@ function AddTodoForm(props) {
   function handleAddTodo(event) {
     event.preventDefault();
 
-    // const todoTitle = event.target.title.value;
+    const newTodo = {
+      title: todoTitle,
+      id: Date.now(),
+      // placeholder for unique number generation, in the future you should not use this
+    };
 
-    // console.log(todoTitle);
-
-    props.onAddTodo(todoTitle);
+    props.onAddTodo(newTodo);
 
     setTodoTitle('');
   }
