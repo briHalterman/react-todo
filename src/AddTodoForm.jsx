@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function AddTodoForm(props) {
+function AddTodoForm({ onAddTodo }) {
   const [todoTitle, setTodoTitle] = useState('');
 
   function handleTitleChange(event) {
@@ -17,7 +17,7 @@ function AddTodoForm(props) {
       // placeholder for unique number generation, in the future you should not use this
     };
 
-    props.onAddTodo(newTodo);
+    onAddTodo(newTodo);
 
     setTodoTitle('');
   }
