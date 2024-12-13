@@ -9,6 +9,7 @@ function InputWithLabel({
   const inputRef = useRef();
 
   useEffect(() => {
+    // console.log(inputRef.current);
     if (isFocused && inputRef.current) {
       inputRef.current.focus();
     }

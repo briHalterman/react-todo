@@ -35,6 +35,7 @@ function AddTodoForm({ onAddTodo }) {
       <InputWithLabel
         todoTitle={todoTitle}
         handleTitleChange={handleTitleChange}
+        isFocused={true}
         // label="Title"
       >
         Title
