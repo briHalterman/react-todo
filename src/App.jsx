@@ -8,7 +8,7 @@ function useSemiPersistentState() {
     JSON.parse(localStorage.getItem('savedTodoList')) || []
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem('savedTodoList', JSON.stringify(todoList));
   }, [todoList]);
 
