@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
@@ -8,7 +9,7 @@ function useSemiPersistentState() {
     JSON.parse(localStorage.getItem('savedTodoList'))
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem('savedTodoList', JSON.stringify(todoList));
   }, [todoList]);
 
