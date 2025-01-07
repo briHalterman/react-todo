@@ -13,10 +13,33 @@ function App() {
     }
   };
 
-  const [todoList, setTodoList] = useState(getTodos);
+  // const [todoList, setTodoList] = useState(getTodos);
+  const [todoList, setTodoList] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    localStorage.setItem('savedTodoList', JSON.stringify(todoList));
+    const fetchTodos = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({
+          data: {
+            todoList:
+              JSON.parse(localStorage.getItem('savedTodoList')) || [],
+          },
+        });
+      }, 2000);
+    });
+
+    fetchTodos.then((result) => {
+      setTodoList(result.data.todoList);
+      setIsLoading(false);
+    });
+  });
+
+  useEffect(() => {
+    if (isLoading == false) {
+      localStorage.setItem('savedTodoList', JSON.stringify(todoList));
+    }
   }, [todoList]);
 
   function addTodo(newTodo) {
