@@ -18,23 +18,70 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchTodos = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({
-          data: {
-            todoList:
-              JSON.parse(localStorage.getItem('savedTodoList')) || [],
-          },
-        });
-      }, 2000);
-    });
+  const fetchData = async () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${
+          import.meta.env.VITE_AIRTABLE_API_TOKEN
+        }`,
+      },
+    };
 
-    fetchTodos.then((result) => {
-      setTodoList(result.data.todoList);
+    const url = `https://api.airtable.com/v0/${
+      import.meta.env.VITE_AIRTABLE_BASE_ID
+    }/${import.meta.env.VITE_TABLE_NAME}`;
+
+    try {
+      const response = await fetch(url, options);
+
+      if (!response.ok) {
+        const message = `Error: ${response.status}`;
+        throw new Error(message);
+      }
+
+      const data = await response.json();
+      // console.log(data);
+
+      const todos = data.records.map((todo) => {
+        const newTodo = {
+          title: todo.fields.title,
+          id: todo.id,
+        };
+
+        return newTodo;
+      });
+
+      // console.log(todos);
+
+      setTodoList(todos);
       setIsLoading(false);
-    });
-  });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // useEffect(() => {
+  //   const fetchTodos = new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //       resolve({
+  //         data: {
+  //           todoList:
+  //             JSON.parse(localStorage.getItem('savedTodoList')) || [],
+  //         },
+  //       });
+  //     }, 2000);
+  //   });
+
+  //   fetchTodos.then((result) => {
+  //     setTodoList(result.data.todoList);
+  //     setIsLoading(false);
+  //   });
+  // });
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (isLoading == false) {
