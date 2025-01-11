@@ -5,13 +5,13 @@ import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
 
 function App() {
-  const getTodos = () => {
-    try {
-      return JSON.parse(localStorage.getItem('savedTodoList')) || [];
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getTodos = () => {
+  //   try {
+  //     return JSON.parse(localStorage.getItem('savedTodoList')) || [];
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   // const [todoList, setTodoList] = useState(getTodos);
   const [todoList, setTodoList] = useState([]);
@@ -61,23 +61,50 @@ function App() {
     }
   };
 
-  // useEffect(() => {
-  //   const fetchTodos = new Promise((resolve, reject) => {
-  //     setTimeout(() => {
-  //       resolve({
-  //         data: {
-  //           todoList:
-  //             JSON.parse(localStorage.getItem('savedTodoList')) || [],
-  //         },
-  //       });
-  //     }, 2000);
-  //   });
+  const postTodo = async (todo) => {
+    const airtableData = {
+      fields: {
+        title: todo,
+      },
+    };
 
-  //   fetchTodos.then((result) => {
-  //     setTodoList(result.data.todoList);
-  //     setIsLoading(false);
-  //   });
-  // });
+    const options = {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${
+          import.meta.env.VITE_AIRTABLE_API_TOKEN
+        }`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(airtableData),
+    };
+
+    const url = `https://api.airtable.com/v0/${
+      import.meta.env.VITE_AIRTABLE_BASE_ID
+    }/${import.meta.env.VITE_TABLE_NAME}`;
+
+    try {
+      const response = await fetch(url, options);
+
+      if (!response.ok) {
+        const message = `Error has occured: ${response.status}`;
+        throw new Error(message);
+      }
+
+      const dataResponse = await response.json();
+      console.log(response);
+
+      const newTodo = {
+        title: dataResponse.fields.title,
+        id: dataResponse.id,
+      };
+
+      return newTodo;
+    } catch (error) {
+      console.log(error.message);
+      return null;
+    }
+  };
 
   useEffect(() => {
     fetchData();
@@ -89,8 +116,10 @@ function App() {
     }
   }, [todoList]);
 
-  function addTodo(newTodo) {
-    setTodoList([...todoList, newTodo]);
+  async function addTodo(newTodo) {
+    const addedTodo = await postTodo(newTodo.title);
+    setTodoList([...todoList, addedTodo]);
+    // console.log(newTodo.title);
   }
 
   function removeTodo(id) {
