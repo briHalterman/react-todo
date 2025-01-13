@@ -1,19 +1,11 @@
 // import React, { useState, useEffect } from 'react';
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
 
 function App() {
-  // const getTodos = () => {
-  //   try {
-  //     return JSON.parse(localStorage.getItem('savedTodoList')) || [];
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // const [todoList, setTodoList] = useState(getTodos);
   const [todoList, setTodoList] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -127,17 +119,29 @@ function App() {
   }
 
   return (
-    <>
-      <h1>Todo List</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <h1>Todo List</h1>
 
-      <AddTodoForm onAddTodo={addTodo} />
+              <AddTodoForm onAddTodo={addTodo} />
 
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-      )}
-    </>
+              {isLoading ? (
+                <p>Loading...</p>
+              ) : (
+                <TodoList
+                  todoList={todoList}
+                  onRemoveTodo={removeTodo}
+                />
+              )}
+            </>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
