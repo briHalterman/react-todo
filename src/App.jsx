@@ -6,7 +6,15 @@ import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
 
 function App() {
-  const [todoList, setTodoList] = useState([]);
+  const getTodos = () => {
+    try {
+      return JSON.parse(localStorage.getItem('savedTodoList')) || [];
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const [todoList, setTodoList] = useState(getTodos);
 
   const [isLoading, setIsLoading] = useState(true);
 
