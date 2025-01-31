@@ -1,0 +1,15 @@
+.container {
+  height: 100vw;
+  padding: 20px;
+
+  background: #D3C4D1;
+  background: linear-gradient(to left, #FFFFFF, #D3C4D1);
+
+  color: #000000;
+}
+
+.header {
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: 2px;
+}

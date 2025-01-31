@@ -1,3 +1,14 @@
 .ListItem {
-  color: #b1e4f1;
+  color: #04275b;
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+}
+
+.button {
+  background: #81F4E1;
+}
+
+.item > span {
+  padding: 0 5px;
 }

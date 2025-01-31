@@ -1,8 +1,8 @@
 // import React, { useState, useEffect } from 'react';
 import { useState, useEffect } from 'react';
-import './App.css';
+import styles from './App.module.css';
 import TodoList from './TodoList';
-import AddTodoForm from './AddTodoForm';
+import AddTodoForm from './AddTodoForm/AddTodoForm';
 
 function App() {
   // const getTodos = () => {
@@ -127,8 +127,8 @@ function App() {
   }
 
   return (
-    <>
-      <h1>Todo List</h1>
+    <div className={styles.container}>
+      <h1 className={styles.header}>Todo List</h1>
 
       <AddTodoForm onAddTodo={addTodo} />
 
@@ -137,7 +137,7 @@ function App() {
       ) : (
         <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
       )}
-    </>
+    </div>
   );
 }
 
