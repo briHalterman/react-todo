@@ -2,13 +2,32 @@
   color: #04275b;
   display: flex;
   align-items: center;
-  padding-bottom: 5px;
-}
-
-.button {
-  background: #81F4E1;
+  padding: 10px;
+  font-size: 16px;
 }
 
 .item > span {
   padding: 0 5px;
+}
+
+.RemoveTodoButton {
+  background: #81F4E1;
+  font-size: 14px;
+  padding: 8px;
+}
+
+.RemoveTodoButton:hover {
+  background: #B4F8ED;
+}
+
+@media (max-width: 400px) {
+  .ListItem {
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  .RemoveButton {
+    font-size: 12px;
+    padding: 6px;
+  }
 }

@@ -2,5 +2,16 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  color: #333;
+
+  background: #D3C4D1;
+  background: linear-gradient(to right, #D3C4D1,#56CBF9);
 }
 
+@media (max-width: 400px) {
+  body {
+    font-size: 14px;
+    background: #D3C4D1;
+  }
+}

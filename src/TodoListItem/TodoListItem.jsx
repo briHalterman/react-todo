@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './TodoListItem.module.css';
+import globalStyles from '../GlobalStyles.module.css';
 
 function TodoListItem({ todo, onRemoveTodo }) {
   return (
@@ -8,7 +9,7 @@ function TodoListItem({ todo, onRemoveTodo }) {
       <button
         type="button"
         onClick={() => onRemoveTodo(todo.id)}
-        className={styles.button}
+        className={`${globalStyles.button} ${styles.RemoveTodoButton}`}
       >
         Remove
       </button>
