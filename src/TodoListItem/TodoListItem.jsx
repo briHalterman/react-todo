@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './TodoListItem.module.css';
 import globalStyles from '../GlobalStyles.module.css';
 
+import CheckIcon from '../check.svg?react';
+
 function TodoListItem({ todo, onRemoveTodo }) {
   return (
     <li className={styles.ListItem}>
@@ -11,7 +13,7 @@ function TodoListItem({ todo, onRemoveTodo }) {
         onClick={() => onRemoveTodo(todo.id)}
         className={`${globalStyles.button} ${styles.RemoveTodoButton}`}
       >
-        Remove
+        <CheckIcon height="18px" width="18px" />
       </button>
     </li>
   );

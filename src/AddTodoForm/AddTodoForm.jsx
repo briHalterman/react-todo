@@ -3,6 +3,8 @@ import InputWithLabel from '../InputWithLabel/InputWithLabel';
 import styles from './AddTodoForm.module.css';
 import globalStyles from '../GlobalStyles.module.css';
 
+import AddIcon from '../add.svg?react';
+
 function AddTodoForm({ onAddTodo }) {
   const [todoTitle, setTodoTitle] = useState('');
 
@@ -35,7 +37,12 @@ function AddTodoForm({ onAddTodo }) {
       >
         Title
       </InputWithLabel>
-      <button type="submit" className={`${globalStyles.button} ${styles.AddTodoButton}`}>Add</button>
+      <button
+        type="submit"
+        className={`${globalStyles.button} ${styles.AddTodoButton}`}
+      >
+        <AddIcon height="18px" width="18px" />
+      </button>
     </form>
   );
 }
