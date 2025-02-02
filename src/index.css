@@ -1,17 +1,20 @@
-@import url('https: //fonts.googleapis.com/css2?family=Parisienne&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+@import url('https: //fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet');
 
 body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 18px;
-  color: #333;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: #121212;
 
-  background: #D3C4D1;
-  background: linear-gradient(to right, #D3C4D1,#56CBF9);
+  background: #FAFAFA;
+
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 @media (max-width: 400px) {
   body {
     font-size: 14px;
-    background: #D3C4D1;
   }
 }

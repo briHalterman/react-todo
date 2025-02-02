@@ -4,13 +4,15 @@
 }
 
 .heading {
+  text-align: center;
   font-size: 8rem;
-  font-weight: bold;
+  font-weight: 700;
   color: #FF729F;
   letter-spacing: 2px;
-  font-family: 'Merriweather', serif;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
+  font-family: 'Playfair Display', serif;
+  -webkit-text-stroke-width: 2.5px;
+  -webkit-text-stroke-color: #1a1a1a;
+  margin-bottom: 0.5em;
 }
 
 @media (max-width: 400px) {

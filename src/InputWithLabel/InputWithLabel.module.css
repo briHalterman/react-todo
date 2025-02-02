@@ -1,17 +1,19 @@
 .input {
-  padding: 5px;
-  font-size: 18px;
+  flex-grow: 1;
+  padding: 8px;
+  font-size: 16px;
+  border: 2px solid #121212;
   border-radius: 5px;
   margin: 5px;
-  background: #D3C4D1;
+  background-color: #FFFFFF;
 }
 
 .input:focus {
-  background: #E5DCE4;
+  border-color: #666666;
+  outline: none;
 }
 
 .label {
-  padding-left: 5px;
-  font-size: 24px;
-  color: #045676;
+  font-size: 40px;
+  font-family: 'Playfair Display', serif;
 }
