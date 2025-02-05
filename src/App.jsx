@@ -132,8 +132,8 @@ function App() {
         <Route
           path="/"
           element={
-  <div className={styles.container}>
-                <h1 className={styles.heading}>Todo List</h1>
+            <div className={styles.container}>
+              <h1 className={styles.heading}>Todo List</h1>
 
               <AddTodoForm onAddTodo={addTodo} />
 
@@ -145,8 +145,7 @@ function App() {
                   onRemoveTodo={removeTodo}
                 />
               )}
-               </div>
-
+            </div>
           }
         />
         <Route path="/new" element={<h1>New Todo List</h1>} />

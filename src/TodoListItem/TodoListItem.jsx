@@ -7,7 +7,7 @@ import CheckIcon from '../check.svg?react';
 function TodoListItem({ todo, onRemoveTodo }) {
   return (
     <li className={styles.ListItem}>
-      <span style={{ width: '40%' }}>{todo.title}</span>
+      <span className={styles.title}>{todo.title}</span>
       <button
         type="button"
         onClick={() => onRemoveTodo(todo.id)}

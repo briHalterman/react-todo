@@ -25,6 +25,10 @@
   background: #0ABEFF;
 }
 
+.title {
+  width: 40%;
+}
+
 @media (max-width: 400px) {
   .ListItem {
     font-size: 14px;
