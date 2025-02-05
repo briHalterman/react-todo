@@ -1,0 +1,42 @@
+.ListItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #00A5E0;
+  font-size: 24px;
+  width: 100%;
+  margin: 10px;
+}
+
+.item > span {
+  padding: 0 5px;
+}
+
+.RemoveTodoButton {
+  background:#00A5E0;
+  font-size: 14px;
+  padding: 8px;
+  border: 2px solid #121212;
+}
+
+.RemoveTodoButton:hover {
+  background: #0ABEFF;
+}
+
+.title {
+  width: 40%;
+}
+
+@media (max-width: 400px) {
+  .ListItem {
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  .RemoveButton {
+    font-size: 12px;
+    padding: 6px;
+  }
+}
