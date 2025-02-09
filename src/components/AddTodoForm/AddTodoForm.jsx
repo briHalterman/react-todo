@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import InputWithLabel from '../InputWithLabel/InputWithLabel';
 import styles from './AddTodoForm.module.css';
-import globalStyles from '../GlobalStyles.module.css';
+import globalStyles from '../../GlobalStyles.module.css';
 
-import AddIcon from '../add.svg?react';
+import AddIcon from '../../assets/add.svg?react';
 
 function AddTodoForm({ onAddTodo }) {
   const [todoTitle, setTodoTitle] = useState('');

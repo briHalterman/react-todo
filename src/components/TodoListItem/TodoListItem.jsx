@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './TodoListItem.module.css';
-import globalStyles from '../GlobalStyles.module.css';
+import globalStyles from '../../GlobalStyles.module.css';
 
-import CheckIcon from '../check.svg?react';
+import CheckIcon from '../../assets/check.svg?react';
 
 function TodoListItem({ todo, onRemoveTodo }) {
   return (
