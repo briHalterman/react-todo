@@ -2,7 +2,7 @@ import { useState } from 'react';
 import InputWithLabel from '../InputWithLabel/InputWithLabel';
 import styles from './AddTodoForm.module.css';
 import globalStyles from '../../GlobalStyles.module.css';
-
+import PropTypes from 'prop-types';
 import AddIcon from '../../assets/add.svg?react';
 
 function AddTodoForm({ onAddTodo }) {
@@ -46,5 +46,9 @@ function AddTodoForm({ onAddTodo }) {
     </form>
   );
 }
+
+AddTodoForm.propTypes = {
+  onAddTodo: PropTypes.func.isRequired,
+};
 
 export default AddTodoForm;
