@@ -51,7 +51,7 @@ function App() {
 
       const data = await response.json();
 
-      data.records.sort((objectA, objectB) => {
+      data.records.sort((objectA: Record, objectB: Record) => {
         const titleA = objectA.fields.title.toLowerCase();
         const titleB = objectB.fields.title.toLowerCase();
 
