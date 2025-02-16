@@ -51,6 +51,23 @@ function App() {
 
       const data = await response.json();
 
+      data.records.sort((objectA, objectB) => {
+        const titleA = objectA.fields.title.toLowerCase();
+        const titleB = objectB.fields.title.toLowerCase();
+
+        if (titleA < titleB) {
+          return -1;
+        }
+
+        if (titleA == titleB) {
+          return 0;
+        }
+
+        if (titleA > titleB) {
+          return 1;
+        }
+      });
+
       type Record = {
         id: string;
         fields: {
