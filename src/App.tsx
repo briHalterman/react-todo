@@ -56,7 +56,7 @@ function App() {
         const titleB = objectB.fields.title.toLowerCase();
 
         if (titleA < titleB) {
-          return -1;
+          return 1;
         }
 
         if (titleA == titleB) {
@@ -64,7 +64,7 @@ function App() {
         }
 
         if (titleA > titleB) {
-          return 1;
+          return -1;
         }
       });
 
