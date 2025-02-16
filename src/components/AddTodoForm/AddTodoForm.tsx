@@ -1,19 +1,35 @@
 import { useState } from 'react';
 import InputWithLabel from '../InputWithLabel/InputWithLabel';
 import styles from './AddTodoForm.module.css';
+<<<<<<<< HEAD:src/components/AddTodoForm/AddTodoForm.jsx
 import globalStyles from '../../GlobalStyles.module.css';
 import PropTypes from 'prop-types';
 import AddIcon from '../../assets/add.svg?react';
+========
+import globalStyles from '../GlobalStyles.module.css';
+import AddIcon from '../add.svg?react';
+>>>>>>>> typescript:src/components/AddTodoForm/AddTodoForm.tsx
 
-function AddTodoForm({ onAddTodo }) {
+type Todo = {
+  id: number;
+  title: string;
+};
+
+type AddTodoFormProps = {
+  onAddTodo: (newTodo: Todo) => void;
+};
+
+const AddTodoForm: React.FC<AddTodoFormProps> = ({ onAddTodo }) => {
   const [todoTitle, setTodoTitle] = useState('');
 
-  function handleTitleChange(event) {
+  function handleTitleChange(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
     const newTodoTitle = event.target.value;
     setTodoTitle(newTodoTitle);
   }
 
-  function handleAddTodo(event) {
+  function handleAddTodo(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const newTodo = {
@@ -33,7 +49,6 @@ function AddTodoForm({ onAddTodo }) {
         todoTitle={todoTitle}
         handleTitleChange={handleTitleChange}
         isFocused={true}
-        // label="Title"
       >
         Title
       </InputWithLabel>
@@ -45,7 +60,7 @@ function AddTodoForm({ onAddTodo }) {
       </button>
     </form>
   );
-}
+};
 
 AddTodoForm.propTypes = {
   onAddTodo: PropTypes.func.isRequired,
