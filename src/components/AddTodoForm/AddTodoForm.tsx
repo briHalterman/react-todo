@@ -1,14 +1,9 @@
 import { useState } from 'react';
 import InputWithLabel from '../InputWithLabel/InputWithLabel';
 import styles from './AddTodoForm.module.css';
-<<<<<<<< HEAD:src/components/AddTodoForm/AddTodoForm.jsx
 import globalStyles from '../../GlobalStyles.module.css';
 import PropTypes from 'prop-types';
 import AddIcon from '../../assets/add.svg?react';
-========
-import globalStyles from '../GlobalStyles.module.css';
-import AddIcon from '../add.svg?react';
->>>>>>>> typescript:src/components/AddTodoForm/AddTodoForm.tsx
 
 type Todo = {
   id: number;
