@@ -43,10 +43,11 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
 };
 
 InputWithLabel.propTypes = {
-  children: PropTypes.node.isRequired,
+  children:
+    PropTypes.node as unknown as React.Validator<React.ReactNode>,
   todoTitle: PropTypes.string.isRequired,
   handleTitleChange: PropTypes.func.isRequired,
-  isFocused: PropTypes.bool,
+  isFocused: PropTypes.bool as unknown as React.Validator<boolean>,
 };
 
 export default InputWithLabel;
