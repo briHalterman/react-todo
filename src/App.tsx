@@ -24,6 +24,7 @@ function App() {
 
   const [todoList, setTodoList] = useState<Todos>(getTodos);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAscending, setIsAscending] = useState(true);
 
   const fetchData = async () => {
     const options = {
@@ -55,16 +56,30 @@ function App() {
         const titleA = objectA.fields.title.toLowerCase();
         const titleB = objectB.fields.title.toLowerCase();
 
-        if (titleA < titleB) {
-          return 1;
-        }
+        if (isAscending) {
+          if (titleA < titleB) {
+            return -1;
+          }
 
-        if (titleA == titleB) {
-          return 0;
-        }
+          if (titleA == titleB) {
+            return 0;
+          }
 
-        if (titleA > titleB) {
-          return -1;
+          if (titleA > titleB) {
+            return 1;
+          }
+        } else {
+          if (titleA < titleB) {
+            return 1;
+          }
+
+          if (titleA == titleB) {
+            return 0;
+          }
+
+          if (titleA > titleB) {
+            return -1;
+          }
         }
       });
 
@@ -164,6 +179,21 @@ function App() {
     setTodoList(todoList.filter((todo) => todo.id !== id));
   }
 
+  useEffect(() => {
+    setTodoList((prevTodos) =>
+      [...prevTodos].sort((a, b) => {
+        const titleA = a.title.toLowerCase();
+        const titleB = b.title.toLowerCase();
+
+        if (isAscending) {
+          return titleA < titleB ? -1 : titleA > titleB ? 1 : 0; // A-Z
+        } else {
+          return titleA > titleB ? -1 : titleA < titleB ? 1 : 0; // Z-A
+        }
+      })
+    );
+  }, [isAscending]);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -174,6 +204,10 @@ function App() {
               <h1 className={styles.heading}>Todo List</h1>
 
               <AddTodoForm onAddTodo={addTodo} />
+
+              <button onClick={() => setIsAscending(!isAscending)}>
+                Sort
+              </button>
 
               {isLoading ? (
                 <p>Loading...</p>
