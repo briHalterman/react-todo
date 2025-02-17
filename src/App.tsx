@@ -3,6 +3,7 @@ import styles from './App.module.css';
 import TodoList from './components/TodoList/TodoList';
 import AddTodoForm from './components/AddTodoForm/AddTodoForm';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import globalStyles from './GlobalStyles.module.css';
 
 type Todo = {
   id: string;
@@ -204,10 +205,14 @@ function App() {
               <h1 className={styles.heading}>Todo List</h1>
 
               <AddTodoForm onAddTodo={addTodo} />
-
-              <button onClick={() => setIsAscending(!isAscending)}>
-                Sort
-              </button>
+              <div className={globalStyles.centeredButton}>
+                <button
+                  className={styles.sortButton}
+                  onClick={() => setIsAscending(!isAscending)}
+                >
+                  Sort
+                </button>
+              </div>
 
               {isLoading ? (
                 <p>Loading...</p>
