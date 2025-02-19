@@ -65,8 +65,6 @@ function App() {
         return newTodo;
       });
 
-      // console.log(todos);
-
       setTodoList(todos);
       setIsLoading(false);
     } catch (error) {
