@@ -1,21 +1,28 @@
-// import React, { useState, useEffect } from 'react';
 import { useState, useEffect } from 'react';
 import styles from './App.module.css';
-import TodoList from './TodoList/TodoList';
-import AddTodoForm from './AddTodoForm/AddTodoForm';
+import TodoList from './components/TodoList/TodoList';
+import AddTodoForm from './components/AddTodoForm/AddTodoForm';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+type Todo = {
+  id: string;
+  title: string;
+};
+
+type Todos = Todo[];
 
 function App() {
   const getTodos = () => {
     try {
-      return JSON.parse(localStorage.getItem('savedTodoList')) || [];
+      const savedTodos = localStorage.getItem('savedTodoList');
+      return savedTodos ? (JSON.parse(savedTodos) as Todos) : [];
     } catch (error) {
       console.log(error);
+      return [];
     }
   };
 
-  const [todoList, setTodoList] = useState(getTodos);
-
+  const [todoList, setTodoList] = useState<Todos>(getTodos);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
@@ -41,9 +48,15 @@ function App() {
       }
 
       const data = await response.json();
-      // console.log(data);
 
-      const todos = data.records.map((todo) => {
+      type Record = {
+        id: string;
+        fields: {
+          title: string;
+        };
+      };
+
+      const todos = data.records.map((todo: Record) => {
         const newTodo = {
           title: todo.fields.title,
           id: todo.id,
@@ -52,16 +65,14 @@ function App() {
         return newTodo;
       });
 
-      // console.log(todos);
-
       setTodoList(todos);
       setIsLoading(false);
     } catch (error) {
-      console.log(error.message);
+      console.log((error as Error).message);
     }
   };
 
-  const postTodo = async (todo) => {
+  const postTodo = async (todo: string) => {
     const airtableData = {
       fields: {
         title: todo,
@@ -101,7 +112,7 @@ function App() {
 
       return newTodo;
     } catch (error) {
-      console.log(error.message);
+      console.log((error as Error).message);
       return null;
     }
   };
@@ -116,13 +127,21 @@ function App() {
     }
   }, [todoList]);
 
-  async function addTodo(newTodo) {
+  type NewTodo = {
+    title: string;
+  };
+
+  async function addTodo(newTodo: NewTodo) {
     const addedTodo = await postTodo(newTodo.title);
-    setTodoList([...todoList, addedTodo]);
-    // console.log(newTodo.title);
+
+    if (addedTodo) {
+      setTodoList([...todoList, addedTodo]);
+    } else {
+      console.log('Failed to add todo');
+    }
   }
 
-  function removeTodo(id) {
+  function removeTodo(id: string) {
     setTodoList(todoList.filter((todo) => todo.id !== id));
   }
 

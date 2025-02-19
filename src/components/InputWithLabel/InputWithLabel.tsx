@@ -1,16 +1,25 @@
 import React, { useRef, useEffect } from 'react';
 import styles from './InputWithLabel.module.css';
+import PropTypes from 'prop-types';
 
-function InputWithLabel({
+type InputWithLabelProps = {
+  children: React.ReactNode;
+  todoTitle: string;
+  handleTitleChange: (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
+  isFocused: boolean;
+};
+
+const InputWithLabel: React.FC<InputWithLabelProps> = ({
   children,
   todoTitle,
   handleTitleChange,
   isFocused,
-}) {
-  const inputRef = useRef();
+}) => {
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    // console.log(inputRef.current);
     if (isFocused && inputRef.current) {
       inputRef.current.focus();
     }
@@ -31,6 +40,14 @@ function InputWithLabel({
       ></input>
     </>
   );
-}
+};
+
+InputWithLabel.propTypes = {
+  children:
+    PropTypes.node as unknown as React.Validator<React.ReactNode>,
+  todoTitle: PropTypes.string.isRequired,
+  handleTitleChange: PropTypes.func.isRequired,
+  isFocused: PropTypes.bool as unknown as React.Validator<boolean>,
+};
 
 export default InputWithLabel;
