@@ -3,6 +3,7 @@ import styles from './App.module.css';
 import TodoList from './components/TodoList/TodoList';
 import AddTodoForm from './components/AddTodoForm/AddTodoForm';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import globalStyles from './GlobalStyles.module.css';
 
 type Todo = {
   id: string;
@@ -24,6 +25,7 @@ function App() {
 
   const [todoList, setTodoList] = useState<Todos>(getTodos);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAscending, setIsAscending] = useState(true);
 
   const fetchData = async () => {
     const options = {
@@ -37,7 +39,9 @@ function App() {
 
     const url = `https://api.airtable.com/v0/${
       import.meta.env.VITE_AIRTABLE_BASE_ID
-    }/${import.meta.env.VITE_TABLE_NAME}`;
+    }/${
+      import.meta.env.VITE_TABLE_NAME
+    }?view=Grid%20view&sort[0][field]=title&sort[0][direction]=asc`;
 
     try {
       const response = await fetch(url, options);
@@ -48,6 +52,37 @@ function App() {
       }
 
       const data = await response.json();
+
+      data.records.sort((objectA: Record, objectB: Record) => {
+        const titleA = objectA.fields.title.toLowerCase();
+        const titleB = objectB.fields.title.toLowerCase();
+
+        if (isAscending) {
+          if (titleA < titleB) {
+            return -1;
+          }
+
+          if (titleA == titleB) {
+            return 0;
+          }
+
+          if (titleA > titleB) {
+            return 1;
+          }
+        } else {
+          if (titleA < titleB) {
+            return 1;
+          }
+
+          if (titleA == titleB) {
+            return 0;
+          }
+
+          if (titleA > titleB) {
+            return -1;
+          }
+        }
+      });
 
       type Record = {
         id: string;
@@ -145,6 +180,21 @@ function App() {
     setTodoList(todoList.filter((todo) => todo.id !== id));
   }
 
+  useEffect(() => {
+    setTodoList((prevTodos) =>
+      [...prevTodos].sort((a, b) => {
+        const titleA = a.title.toLowerCase();
+        const titleB = b.title.toLowerCase();
+
+        if (isAscending) {
+          return titleA < titleB ? -1 : titleA > titleB ? 1 : 0; // A-Z
+        } else {
+          return titleA > titleB ? -1 : titleA < titleB ? 1 : 0; // Z-A
+        }
+      })
+    );
+  }, [isAscending]);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -155,6 +205,14 @@ function App() {
               <h1 className={styles.heading}>Todo List</h1>
 
               <AddTodoForm onAddTodo={addTodo} />
+              <div className={globalStyles.centeredButton}>
+                <button
+                  className={styles.sortButton}
+                  onClick={() => setIsAscending(!isAscending)}
+                >
+                  Sort
+                </button>
+              </div>
 
               {isLoading ? (
                 <p>Loading...</p>

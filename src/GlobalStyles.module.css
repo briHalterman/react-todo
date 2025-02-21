@@ -2,3 +2,9 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.centeredButton {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
