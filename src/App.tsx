@@ -1,18 +1,32 @@
+// App.tsx
+// - Main entry point for the Todo List app
+// - Manages the state for the todo list
+// - Fetches and stores todos using Airtable API and localStorage
+// - Handles adding, removing, and sorting todos
+// - Uses React Router for navigation
+
+// Import React hooks, styles, and components
 import { useState, useEffect } from 'react';
-import styles from './App.module.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import TodoList from './components/TodoList/TodoList';
 import AddTodoForm from './components/AddTodoForm/AddTodoForm';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import globalStyles from './GlobalStyles.module.css';
+import styles from './App.module.css';
 
+// Define the shape of a Todo item
 type Todo = {
   id: string;
   title: string;
 };
 
+// Define a list of todos
 type Todos = Todo[];
 
 function App() {
+
+  // Local Storage Handling
+
+  // Retrieve todos from localStorage
   const getTodos = () => {
     try {
       const savedTodos = localStorage.getItem('savedTodoList');
@@ -23,10 +37,20 @@ function App() {
     }
   };
 
+  // State Management
+
+  // State to store the todo list, initialized from localStorage
   const [todoList, setTodoList] = useState<Todos>(getTodos);
+
+  // Loading state to handle async data fetching
   const [isLoading, setIsLoading] = useState(true);
+
+  // Sort direction: true = A-Z, false = Z-A
   const [isAscending, setIsAscending] = useState(true);
 
+  // Fetching Data from Airtable
+
+  // Fetch todos from Airtable
   const fetchData = async () => {
     const options = {
       method: 'GET',
@@ -37,6 +61,7 @@ function App() {
       },
     };
 
+    // Airtable API URL with sorting by title (ascending)
     const url = `https://api.airtable.com/v0/${
       import.meta.env.VITE_AIRTABLE_BASE_ID
     }/${
@@ -53,6 +78,15 @@ function App() {
 
       const data = await response.json();
 
+      // Define Airtable record structure
+      type Record = {
+        id: string;
+        fields: {
+          title: string;
+        };
+      };
+
+      // Sort todos manually
       data.records.sort((objectA: Record, objectB: Record) => {
         const titleA = objectA.fields.title.toLowerCase();
         const titleB = objectB.fields.title.toLowerCase();
@@ -84,13 +118,7 @@ function App() {
         }
       });
 
-      type Record = {
-        id: string;
-        fields: {
-          title: string;
-        };
-      };
-
+      // Transform Airtable records into Todo objects
       const todos = data.records.map((todo: Record) => {
         const newTodo = {
           title: todo.fields.title,
@@ -107,6 +135,9 @@ function App() {
     }
   };
 
+  // Adding a New Todo
+
+  // Send a new todo to Airtable
   const postTodo = async (todo: string) => {
     const airtableData = {
       fields: {
@@ -138,8 +169,8 @@ function App() {
       }
 
       const dataResponse = await response.json();
-      console.log(response);
 
+      // Transform response into a Todo object
       const newTodo = {
         title: dataResponse.fields.title,
         id: dataResponse.id,
@@ -166,6 +197,9 @@ function App() {
     title: string;
   };
 
+  // Handle Add & Remove
+
+  // Add a new todo by calling `postTodo` and updating state
   async function addTodo(newTodo: NewTodo) {
     const addedTodo = await postTodo(newTodo.title);
 
@@ -176,10 +210,12 @@ function App() {
     }
   }
 
+  // Remove a todo by filtering it out of the list
   function removeTodo(id: string) {
     setTodoList(todoList.filter((todo) => todo.id !== id));
   }
 
+  // Re-sort the todo list whenever `isAscending` changes
   useEffect(() => {
     setTodoList((prevTodos) =>
       [...prevTodos].sort((a, b) => {
@@ -195,6 +231,8 @@ function App() {
     );
   }, [isAscending]);
 
+  // Render the App
+
   return (
     <BrowserRouter>
       <Routes>
@@ -204,7 +242,10 @@ function App() {
             <div className={styles.container}>
               <h1 className={styles.heading}>Todo List</h1>
 
+              {/* Form to add a new todo */}
               <AddTodoForm onAddTodo={addTodo} />
+
+              {/* Sort button to toggle A-Z or Z-A */}
               <div className={globalStyles.centeredButton}>
                 <button
                   className={styles.sortButton}
@@ -214,6 +255,7 @@ function App() {
                 </button>
               </div>
 
+              {/* Show loading state or todo list */}
               {isLoading ? (
                 <p>Loading...</p>
               ) : (
