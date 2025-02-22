@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import TodoList from './components/TodoList/TodoList';
 import AddTodoForm from './components/AddTodoForm/AddTodoForm';
+import sortTodos from './utils/sortTodos';
 import globalStyles from './GlobalStyles.module.css';
 import styles from './App.module.css';
 
@@ -23,7 +24,6 @@ type Todo = {
 type Todos = Todo[];
 
 function App() {
-
   // Local Storage Handling
 
   // Retrieve todos from localStorage
@@ -86,38 +86,6 @@ function App() {
         };
       };
 
-      // Sort todos manually
-      data.records.sort((objectA: Record, objectB: Record) => {
-        const titleA = objectA.fields.title.toLowerCase();
-        const titleB = objectB.fields.title.toLowerCase();
-
-        if (isAscending) {
-          if (titleA < titleB) {
-            return -1;
-          }
-
-          if (titleA == titleB) {
-            return 0;
-          }
-
-          if (titleA > titleB) {
-            return 1;
-          }
-        } else {
-          if (titleA < titleB) {
-            return 1;
-          }
-
-          if (titleA == titleB) {
-            return 0;
-          }
-
-          if (titleA > titleB) {
-            return -1;
-          }
-        }
-      });
-
       // Transform Airtable records into Todo objects
       const todos = data.records.map((todo: Record) => {
         const newTodo = {
@@ -128,7 +96,7 @@ function App() {
         return newTodo;
       });
 
-      setTodoList(todos);
+      setTodoList(sortTodos(todos, isAscending));
       setIsLoading(false);
     } catch (error) {
       console.log((error as Error).message);
@@ -217,18 +185,7 @@ function App() {
 
   // Re-sort the todo list whenever `isAscending` changes
   useEffect(() => {
-    setTodoList((prevTodos) =>
-      [...prevTodos].sort((a, b) => {
-        const titleA = a.title.toLowerCase();
-        const titleB = b.title.toLowerCase();
-
-        if (isAscending) {
-          return titleA < titleB ? -1 : titleA > titleB ? 1 : 0; // A-Z
-        } else {
-          return titleA > titleB ? -1 : titleA < titleB ? 1 : 0; // Z-A
-        }
-      })
-    );
+    setTodoList((prevTodos) => sortTodos(prevTodos, isAscending));
   }, [isAscending]);
 
   // Render the App
