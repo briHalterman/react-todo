@@ -1,4 +1,4 @@
-// sortTodos Component
+// sortTodos Utility Function
 // - Sorts array of todos by title
 
 // Define Todo Type
@@ -8,7 +8,7 @@ type Todo = {
   title: string;
 };
 
-// sortTodos Component
+// sortTodos Function
 
 const sortTodos = (todos: Todo[], isAscending: boolean): Todo[] => {
   return [...todos].sort((a, b) => {
