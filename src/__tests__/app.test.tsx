@@ -1,5 +1,12 @@
 import sortTodos from '../utils/sortTodos';
 
+// Mock fetch globally
+global.fetch = jest.fn();
+
+// Unit Tests
+// - Test sorting function ✓
+// Todo: Test API logic
+
 describe('sortTodos', () => {
   const testTodos = [
     { id: '1', title: 'Road to React Lesson' },
@@ -15,5 +22,23 @@ describe('sortTodos', () => {
       'Road to React Lesson',
     ]);
   });
+
+  test('sorts todos in descending order', () => {
+    const sorted = sortTodos(testTodos, false);
+    expect(sorted.map((todo) => todo.title)).toEqual([
+      'Road to React Lesson',
+      'Mindset Assignment',
+      'Coding Assignment',
+    ]);
+  });
 });
 
+//  Component Tests
+// - TodoList
+// - AddTodoForm
+// - TodoContainer
+// - Input with Label
+
+
+
+// Snapshot

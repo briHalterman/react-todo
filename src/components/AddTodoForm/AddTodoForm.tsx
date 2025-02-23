@@ -1,4 +1,4 @@
-// AddTodoForm Compoonent
+// ~AddTodoForm Compoonent~
 // - Adds new todos to list
 // - Incl. text input and submit button
 
@@ -22,7 +22,6 @@ type AddTodoFormProps = {
 };
 
 const AddTodoForm: React.FC<AddTodoFormProps> = ({ onAddTodo }) => {
-
   // Manage Input State
 
   // store what the user types
@@ -42,7 +41,6 @@ const AddTodoForm: React.FC<AddTodoFormProps> = ({ onAddTodo }) => {
 
   // Create new todo object and call onAddTodo(newTodo)
   function handleAddTodo(event: React.FormEvent<HTMLFormElement>) {
-
     // Prevent page reload
     event.preventDefault();
 

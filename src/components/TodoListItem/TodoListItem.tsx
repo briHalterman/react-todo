@@ -1,4 +1,4 @@
-// TodoListItem Component
+// ~TodoListItem Component~
 // - Displays a single todo item from the list
 // - includes title and remove button
 
@@ -21,7 +21,7 @@ type TodoListItemProps = {
   onRemoveTodo: (id: string) => void;
 };
 
-// TodoListItem Component
+//\TodoListItem Component
 
 const TodoListItem: React.FC<TodoListItemProps> = ({
   todo,
