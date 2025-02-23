@@ -175,9 +175,45 @@ const TodoContainer: React.FC = () => {
     }
   }
 
+  // Delete todo from Airtable db
+  const deleteTodo = async (id: string) => {
+    // Construct URL with todo's id
+    const url = `https://api.airtable.com/v0/${
+      import.meta.env.VITE_AIRTABLE_BASE_ID
+    }/${import.meta.env.VITE_TABLE_NAME}/${id}`;
+
+    const options = {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${
+          import.meta.env.VITE_AIRTABLE_API_TOKEN
+        }`,
+      },
+    };
+
+    try {
+      const response = await fetch(url, options);
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  };
+
   // Remove a todo by filtering it out of the list
-  function removeTodo(id: string) {
-    setTodoList(todoList.filter((todo) => todo.id !== id));
+  async function removeTodo(id: string) {
+    const wasRemoved = await deleteTodo(id);
+
+    if (wasRemoved) {
+      setTodoList(todoList.filter((todo) => todo.id !== id));
+    } else {
+      console.log('Failed to remove item from database.');
+    }
   }
 
   // Re-sort the todo list whenever `isAscending` changes
