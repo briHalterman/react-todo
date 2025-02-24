@@ -10,6 +10,7 @@ import AddTodoForm from '../components/AddTodoForm/AddTodoForm';
 import sortTodos from '../utils/sortTodos';
 import globalStyles from '../GlobalStyles.module.css';
 import styles from '../App.module.css';
+import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 
 // Define the shape of a Todo item
 type Todo = {
@@ -19,6 +20,10 @@ type Todo = {
 
 // Define a list of todos
 type Todos = Todo[];
+
+const getSortIcon = (isAscending: boolean) => {
+  return isAscending ? <FaArrowDown /> : <FaArrowUp />;
+};
 
 const TodoContainer: React.FC = () => {
   // Local Storage Handling
@@ -236,7 +241,7 @@ const TodoContainer: React.FC = () => {
           className={styles.sortButton}
           onClick={() => setIsAscending(!isAscending)}
         >
-          Sort
+          Sort {getSortIcon(isAscending)}
         </button>
       </div>
 
