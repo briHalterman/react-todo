@@ -1,16 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet');
 
-body {
+body, html {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 20px;
   color: #121212;
-
+  display: flex;
   background: #FAFAFA;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
 
+#root {
+  width: 100%;
   max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
 }
 
 @media (max-width: 400px) {
