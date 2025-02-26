@@ -1,4 +1,4 @@
-// ~AddTodoForm Compoonent~
+// AddTodoForm Compoonent
 // - Adds new todos to list
 // - Incl. text input and submit button
 

@@ -1,4 +1,4 @@
-// ~TodoList Component~
+// TodoList Component
 // - Receives a list of todos from App.tsx
 // - Loops through todos and renders each one as a TodoList Item
 // - Passes down onRemoveTodo function
@@ -21,7 +21,7 @@ type TodoListProps = {
   onRemoveTodo: (id: string) => void;
 };
 
-//\TodoList Component
+//TodoList Component
 
 const TodoList: React.FC<TodoListProps> = ({
   todoList,

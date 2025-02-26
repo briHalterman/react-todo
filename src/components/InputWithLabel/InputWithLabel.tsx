@@ -1,4 +1,4 @@
-// ~InputWithLabel Component~
+// InputWithLabel Component
 // - Displays label & manages input field
 // - Calls handleTitleChange to update todo title in AddTodoForm
 

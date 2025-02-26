@@ -1,4 +1,4 @@
-// ~TodoContainer Component~
+// TodoContainer Component
 // - Manages the state for the todo list
 // - Fetches and stores todos using Airtable API and localStorage
 // - Handles adding and removing

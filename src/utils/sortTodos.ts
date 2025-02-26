@@ -1,4 +1,4 @@
-// ~sortTodos Utility Function~
+// sortTodos Utility Function
 // - Sorts array of todos by title
 
 // Define Todo Type
