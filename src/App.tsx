@@ -6,7 +6,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import TodoContainer from './components/TodoContainer';
-import HomePage from './components/HomePage';
+import HomePage from './components/HomePage/HomePage';
 
 function App() {
   // Render the App

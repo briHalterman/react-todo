@@ -1,0 +1,22 @@
+.container {
+  text-align: center;
+  padding: 50px;
+  background-color: #FAFAFA;
+}
+
+h1 {
+  text-align: center;
+  font-size: 8rem;
+  font-weight: 700;
+  color: #FF729F;
+  letter-spacing: 2px;
+  font-family: 'Playfair Display', serif;
+  -webkit-text-stroke-width: 2.5px;
+  -webkit-text-stroke-color: #1a1a1a;
+  margin-bottom: 0.5em;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #00A5E0;
+}
