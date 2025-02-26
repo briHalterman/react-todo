@@ -3,18 +3,21 @@
 // - Uses React Router for navigation
 
 // Imports
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar/Navbar';
 import TodoContainer from './components/TodoContainer';
+import HomePage from './components/HomePage/HomePage';
 
 function App() {
   // Render the App
   return (
-    <BrowserRouter>
+    <>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<TodoContainer />} />
-        <Route path="/new" element={<h1>New Todo List</h1>} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/todos" element={<TodoContainer />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 

@@ -1,0 +1,30 @@
+.navbar {
+  background-color: #007bff;
+  margin: 15px;
+  text-align: center;
+  border-radius: 5px;
+  justify-content: center;
+  display: flex;
+}
+
+.navbar ul {
+  list-style-type: none;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  display: flex;
+}
+
+.navbar li {
+  display: inline;
+  margin: 0 15px;
+}
+
+.navbar a {
+  color: #FAFAFA;
+  font-size: 1.2rem;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
