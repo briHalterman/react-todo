@@ -5,13 +5,10 @@
   padding: 10px;
   border-radius: 5px;
   border: 2px solid #00A5E0;
-  font-size: 24px;
+  font-size: 20px;
   width: 100%;
-  margin: 10px;
-}
-
-.item > span {
-  padding: 0 5px;
+  margin: 10px auto;
+  box-sizing: border-box;
 }
 
 .RemoveTodoButton {
@@ -23,10 +20,6 @@
 
 .RemoveTodoButton:hover {
   background: #0ABEFF;
-}
-
-.title {
-  width: 40%;
 }
 
 @media (max-width: 400px) {

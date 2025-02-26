@@ -5,19 +5,23 @@
 // Imports
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-import TodoContainer from './TodoContainer/TodoContainer';
+import TodoContainer from './components/TodoContainer/TodoContainer';
 import HomePage from './components/HomePage/HomePage';
+import Footer from './components/Footer/Footer';
 
 function App() {
   // Render the App
   return (
-    <>
+    <div id="root">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/todos" element={<TodoContainer />} />
-      </Routes>
-    </>
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/todos" element={<TodoContainer />} />
+        </Routes>
+      </div>
+      <Footer />
+    </div>
   );
 }
 
