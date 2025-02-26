@@ -4,16 +4,20 @@
 
 // Imports
 import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import TodoContainer from './components/TodoContainer';
 import HomePage from './components/HomePage';
 
 function App() {
   // Render the App
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/todos" element={<TodoContainer />} />
-    </Routes>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/todos" element={<TodoContainer />} />
+      </Routes>
+    </>
   );
 }
 
