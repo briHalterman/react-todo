@@ -247,7 +247,7 @@ const TodoContainer: React.FC = () => {
 
       {/* Show loading state or todo list */}
       {isLoading ? (
-        <p>Loading...</p>
+        <p className={styles.loading}>Loading...</p>
       ) : (
         <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
       )}
