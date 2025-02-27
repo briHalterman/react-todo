@@ -1,0 +1,13 @@
+.footer {
+  background-color: #007bff;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  margin-top: auto
+}
+
+p {
+  color: #FAFAFA;
+  font-size: 14px;
+}

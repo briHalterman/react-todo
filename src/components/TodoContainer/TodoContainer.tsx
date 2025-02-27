@@ -5,11 +5,11 @@
 
 // Import React hooks, styles, and components
 import { useState, useEffect } from 'react';
-import TodoList from '../components/TodoList/TodoList';
-import AddTodoForm from '../components/AddTodoForm/AddTodoForm';
-import sortTodos from '../utils/sortTodos';
-import globalStyles from '../GlobalStyles.module.css';
-import styles from '../App.module.css';
+import TodoList from '../TodoList/TodoList';
+import AddTodoForm from '../AddTodoForm/AddTodoForm';
+import sortTodos from '../../utils/sortTodos';
+import globalStyles from '../../GlobalStyles.module.css';
+import styles from './TodoContainer.module.css';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 
 // Define the shape of a Todo item
