@@ -33,9 +33,6 @@ react-todo/
 │   │   ├── Footer/
 │   │   │   ├── Footer.module.css
 │   │   │   └── Footer.tsx
-│   │   ├── HomePage/
-│   │   │   ├── HomePage.module.css
-│   │   │   └── HomePage.tsx
 │   │   ├── InputWithLabel/
 │   │   │   ├── InputWithLabel.module.css
 │   │   │   └── InputWithLabel.tsx
@@ -51,6 +48,9 @@ react-todo/
 │   │   └── TodoListItem/
 │   │       ├── TodoListItem.module.css
 │   │       └── TodoListItem.tsx
+│   ├── HomePage/
+│   │   ├── HomePage.module.css
+│   │   └── HomePage.tsx
 │   ├── styles/
 │   ├── utils/
 │   ├── __tests__/
