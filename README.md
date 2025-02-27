@@ -3,6 +3,24 @@
 ## Project Overview
 This is a simple and intuitive Todo List Application built with React, TypeScript, and Vite. The app allows users to add, remove, and sort tasks.
 
+## Installation & Setup
+
+### Clone the repository
+```
+git clone https://github.com/briHalterman/react-todo.git
+cd react-todo
+```
+### Install Dependencies
+```
+npm install
+```
+### Start the Development Server
+```
+npm run dev
+```
+### Visit the app in your browser
+Navigate to http://localhost:5173/ to use the app.
+
 ## Project Structure
 ```
 react-todo/
@@ -45,23 +63,14 @@ react-todo/
 └── README.md
 ```
 
-## Installation & Setup
-
-### Clone the repository
-```
-git clone https://github.com/briHalterman/react-todo.git
-cd react-todo
-```
-### Install Dependencies
-```
-npm install
-```
-### Start the Development Server
-```
-npm run dev
-```
-### Visit the app in your browser
-Navigate to http://localhost:5173/ to use the app.
+## Technologies Used
+- React
+- TypeScript
+- Vite
+- CSS Modules
+- React Router
+- Jest
+- React Testing Library
 
 ## Planned Improvements
 - Implement Update Todo Feature
